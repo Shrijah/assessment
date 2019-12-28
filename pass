@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	function fillData()
+{
+
+animalsArr=['select degree','graduation','post graduation']
+var dd= document.getElementById("items");
+
+for(i=0;i<animalsArr.length;i++)
+{
+
+var ele=document.createElement('option')
+ele.text=animalsArr[i];
+dd.add(ele,i)
+}
+}
+
+function fillOpts()
+{
+opts=[['CSE','ECE','EEE','ETM','IT'],['Electronics','Electrical','Power Electronics']]
+
+
+var dd= document.getElementById("items");
+
+var ddOpts= document.getElementById("opts");
+
+ddOpts.innerHTML=null;
+
+idx= dd.selectedIndex;
+
+ for(i=0;i<opts[idx-1].length;i++)
+        {
+
+        var ele1=document.createElement('option');
+                ele1.text=opts[idx-1][i];
+        ddOpts.add(ele1,i);     
+        }
+
+}
+
+function passShow(){
+ var x=document.getElementById('pass')
+  if (x.type == "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+
+function dobVal()
+{
+                var d=new Date();
+
+
+                        var year=d.getFullYear()-18;
+                        var mon= d.getMonth()+1;
+                        var d=d.getDate();
+
+                                if(d<10)
+                                        d='0'+d;
+                                        if(mon<10)
+                                        mon='0'+mon;
+                document.getElementById('dob').max=year+'-'+mon+'-'+d;                 
+}
+
+
+function validatePassword(){
+
+var password = document.getElementById("pass")
+ var confirm_password = document.getElementById("cnfrm");
+
+
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity(alert("Passwords Don't Match"));
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+
+</script>
+</head>
+
+<body onload="fillData()">
+	<div id="q1">
+password: <span style="color: red">*</span> <input type="password" id ="pass" > 
+<input type="checkbox" id="q1" onclick="passShow()" > <br>
+confirm password: <span style="color: red">*</span> <input type="password" id="cnfrm" >
+<br>
+DOB:<span style="color: red">*</span> <input type="date" name="" id='dob' onclick="dobVal()">
+<br>
+
+ <span style="color: red">*</span> <select id="items" onchange="fillOpts()"> 
+
+</select>
+<select id="opts">  </select> <br>
+<button type="button" onclick="validatePassword()">Click Me!</button>
+</body>
+</html>
